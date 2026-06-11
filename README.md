@@ -1,81 +1,81 @@
 # BAC AI Front
 
-Aplicație web pentru pregătirea examenului de Bacalaureat la Biologie, cu ajutorul inteligenței artificiale. Platforma generează automat subiecte realiste pe baza programei oficiale BAC, permite utilizatorilor să răspundă la întrebări direct în browser, iar răspunsurile sunt corectate semantic de un model AI, cu feedback și note.
+A web application for preparing for the Romanian Baccalaureate (BAC) exam in Biology, powered by artificial intelligence. The platform automatically generates realistic exam subjects based on the official curriculum, lets users answer questions directly in the browser, and uses an AI model to semantically grade the answers and provide feedback and scores.
 
-## Funcționalități
+## Features
 
-- **Autentificare** – înregistrare și autentificare utilizatori (token JWT stocat local).
-- **Generare subiecte cu AI** – subiecte generate automat, fie pe un capitol ales, fie aleatoriu, acoperind cele 22 de capitole din programa BAC de biologie.
-- **Examen interactiv** – interfață cu mai multe tipuri de itemi (definiție, răspuns scurt, argumentare, enumerare, completare tabel, asociere, răspuns deschis), inclusiv suport pentru imagini de referință (lightbox).
-- **Corectare automată** – răspunsurile sunt trimise spre evaluare semantică de către un model AI, cu feedback în limba română.
-- **Urmărire progres** – dashboard cu istoricul examenelor, notele obținute și rezultatele detaliate.
+- **Authentication** – user registration and login (JWT token stored locally).
+- **AI-generated exams** – exams generated automatically, either for a chosen chapter or at random, covering all 22 chapters of the Biology BAC curriculum.
+- **Interactive exam** – interface supporting multiple item types (definition, short answer, argumentation, enumeration, table completion, matching, open answer), including support for reference images (with lightbox view).
+- **Automatic grading** – answers are sent for semantic evaluation by an AI model, with feedback provided in Romanian.
+- **Progress tracking** – dashboard with exam history, scores, and detailed results.
 
-## Tehnologii utilizate
+## Technologies used
 
 ### Frontend
-- [React 19](https://react.dev/) – librărie UI
-- [React Router v7](https://reactrouter.com/) – rutare client-side
+- [React 19](https://react.dev/) – UI library
+- [React Router v7](https://reactrouter.com/) – client-side routing
 - [Vite](https://vitejs.dev/) – build tool & dev server
-- [Tailwind CSS v4](https://tailwindcss.com/) – stilizare (via `@tailwindcss/vite`)
-- [Lucide React](https://lucide.dev/) – set de iconițe
+- [Tailwind CSS v4](https://tailwindcss.com/) – styling (via `@tailwindcss/vite`)
+- [Lucide React](https://lucide.dev/) – icon set
 
-### Comunicare cu backend
-- API REST consumat prin `fetch`, cu autentificare bazată pe JWT (`src/api/client.js`)
-- Configurabil prin variabila de mediu `VITE_API_BASE`
+### Backend communication
+- REST API consumed via `fetch`, with JWT-based authentication (`src/api/client.js`)
+- Configurable through the `VITE_API_BASE` environment variable
 
-### Infrastructură / Tooling
-- [Docker](https://www.docker.com/) & Docker Compose – containerizare pentru mediul de dezvoltare
+### Infrastructure / Tooling
+- [Docker](https://www.docker.com/) & Docker Compose – containerized development environment
 - Node.js 24 (alpine)
 
-## Structura proiectului
+## Project structure
 
 ```
 src/
-├── api/            # Client API (autentificare, examene)
-├── components/     # Componente reutilizabile (Navbar, ProtectedRoute, LoadingSpinner)
-├── context/        # Context de autentificare (AuthContext)
-├── pages/          # Pagini ale aplicației
-│   ├── Landing.jsx     # Pagina principală
-│   ├── Login.jsx       # Autentificare
-│   ├── Register.jsx    # Înregistrare
-│   ├── Dashboard.jsx   # Istoric și progres
-│   ├── StartExam.jsx   # Selectare capitol / start examen
-│   ├── ExamPage.jsx    # Susținere examen
-│   └── ResultsPage.jsx # Rezultate și feedback
-└── App.jsx         # Configurare rutare
+├── api/            # API client (authentication, exams)
+├── components/     # Reusable components (Navbar, ProtectedRoute, LoadingSpinner)
+├── context/        # Authentication context (AuthContext)
+├── pages/          # Application pages
+│   ├── Landing.jsx     # Landing page
+│   ├── Login.jsx       # Login
+│   ├── Register.jsx    # Registration
+│   ├── Dashboard.jsx   # History and progress
+│   ├── StartExam.jsx   # Chapter selection / start exam
+│   ├── ExamPage.jsx    # Taking the exam
+│   └── ResultsPage.jsx # Results and feedback
+└── App.jsx         # Routing configuration
 ```
 
-## Rulare locală
+## Running locally
 
-### Cu npm
+### With npm
 
 ```bash
 npm install
 npm run dev
 ```
 
-Aplicația va porni la `http://localhost:5173`.
+The app will start at `http://localhost:5173`.
 
-### Cu Docker
+### With Docker
 
 ```bash
 docker-compose up
 ```
 
-## Configurare
+## Configuration
 
-Creează un fișier `.env` pe baza `.env.example`:
+Create a `.env` file based on `.env.example`:
 
 ```
 VITE_API_BASE=http://localhost:8000
 ```
 
-`VITE_API_BASE` reprezintă URL-ul către backend-ul API (necesar pentru autentificare, generare și corectare examene).
+`VITE_API_BASE` is the URL of the backend API (required for authentication, exam generation, and grading).
 
-## Scripturi disponibile
+## Available scripts
 
-| Comandă          | Descriere                              |
-|-------------------|-----------------------------------------|
-| `npm run dev`     | Pornește serverul de dezvoltare Vite    |
-| `npm run build`   | Creează build-ul de producție           |
-| `npm run preview` | Previzualizează build-ul de producție   |
+| Command           | Description                              |
+|-------------------|-------------------------------------------|
+| `npm run dev`     | Starts the Vite development server        |
+| `npm run build`   | Creates a production build                 |
+| `npm run preview` | Previews the production build              |
